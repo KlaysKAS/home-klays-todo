@@ -7,6 +7,8 @@ class Auth extends ChangeNotifier {
   User? _currentUser;
   final _firebaseInstance = FirebaseAuth.instance;
 
+  bool get isLoggedIn => _currentUser != null;
+
   @inject
   Auth() {
     _firebaseInstance.authStateChanges().listen((User? user) {
@@ -17,7 +19,8 @@ class Auth extends ChangeNotifier {
 
   Future<String> login(String email, String pass) async {
     try {
-      await _firebaseInstance.signInWithEmailAndPassword(email: email, password: pass);
+      await _firebaseInstance.signInWithEmailAndPassword(
+          email: email, password: pass);
       return '';
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found' || e.code == 'wrong-password') {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo/login/login_vm.dart';
+import 'package:todo/ui/login/login_vm.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -31,7 +31,8 @@ class LoginPage extends StatelessWidget {
                 hintText: 'example@gmail.com',
                 hintStyle: const TextStyle(color: Color(0x66000000)),
                 label: const Text("Email"),
-                labelStyle: const TextStyle(color: Colors.blueAccent, fontSize: 12),
+                labelStyle:
+                    const TextStyle(color: Colors.blueAccent, fontSize: 12),
                 border: const OutlineInputBorder(
                     borderSide: BorderSide(
                   color: Colors.blueAccent,
@@ -49,21 +50,23 @@ class LoginPage extends StatelessWidget {
           const SizedBox(height: 4),
           TextField(
             decoration: InputDecoration(
-                hintText: 'qwerty123',
-                hintStyle: const TextStyle(color: Color(0x66000000)),
-                label: const Text("Password"),
-                labelStyle: const TextStyle(color: Colors.blueAccent, fontSize: 12),
-                border: const OutlineInputBorder(
-                    borderSide: BorderSide(
-                  color: Colors.blueAccent,
-                )),
-                errorBorder: const OutlineInputBorder(
+              hintText: 'qwerty123',
+              hintStyle: const TextStyle(color: Color(0x66000000)),
+              label: const Text("Password"),
+              labelStyle:
+                  const TextStyle(color: Colors.blueAccent, fontSize: 12),
+              border: const OutlineInputBorder(
                   borderSide: BorderSide(
-                    color: Colors.red,
-                  ),
+                color: Colors.blueAccent,
+              )),
+              errorBorder: const OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.red,
                 ),
-                errorMaxLines: 2,
-                errorText: vm.emailErrors),
+              ),
+              errorMaxLines: 2,
+              errorText: vm.passwordErrors,
+            ),
             keyboardType: TextInputType.text,
             autocorrect: false,
             obscureText: true,
@@ -71,6 +74,18 @@ class LoginPage extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           ElevatedButton(onPressed: vm.submit, child: const Text("login")),
+          InkWell(
+            onTap: () {
+              // Navigator.of(context).push() // TODO(Kirill): Register page
+            },
+            child: Text(
+              'Not registered? Register',
+              style: TextStyle(
+                color: Colors.blueAccent[100],
+                decoration: TextDecoration.none,
+              ),
+            ),
+          ),
         ],
       ),
     );

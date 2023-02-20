@@ -1,8 +1,11 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:todo/main.dart';
 
 class LoginVm extends ChangeNotifier {
+  final _auth = appComponent.autentificator();
+
   String? get emailErrors => errors['email']?.join('\n');
+
   String? get passwordErrors => errors['pass']?.join('\n');
 
   String _email = '';
@@ -21,6 +24,8 @@ class LoginVm extends ChangeNotifier {
   }
 
   void submit() async {
-    final result;
+    final result = await _auth.login(_email, _password);
+    if (result.isNotEmpty) errors['email'] = [result]; // TODO(Kirill): test
+    notifyListeners();
   }
 }
