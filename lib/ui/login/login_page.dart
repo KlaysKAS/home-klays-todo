@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo/ui/login/login_vm.dart';
+import 'package:todo/ui/registration/registration_page.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -76,7 +77,11 @@ class LoginPage extends StatelessWidget {
           ElevatedButton(onPressed: vm.submit, child: const Text("login")),
           InkWell(
             onTap: () {
-              // Navigator.of(context).push() // TODO(Kirill): Register page
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) => const RegistrationPage(),
+                ),
+              );
             },
             child: Text(
               'Not registered? Register',
